@@ -2,6 +2,7 @@ import asyncio
 from aiogram import Bot, Dispatcher, F
 from aiogram.fsm.storage.memory import MemoryStorage
 from admin_filter import AdminFilterMiddleware
+from loguru import logger
 
 from config import BOT_TOKEN
 from states import CreateUserFlow
@@ -33,6 +34,7 @@ from handlers import (
     cancel_flow
 )
 
+logger.add("logs/bot.log", level="INFO", rotation="10 MB", retention="1 month", compression="gz")
 
 async def main():
     bot = Bot(token=BOT_TOKEN)
@@ -103,4 +105,11 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        logger.info("Bot is launched...")
+        asyncio.run(main())
+    except Exception as e:
+        logger.error(f"The bot fell with a mistake: {e}")
+    finally:
+        logger.warning("Bot off")
+        asyncio.session.close()
