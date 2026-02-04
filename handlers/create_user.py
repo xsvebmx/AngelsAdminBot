@@ -7,7 +7,6 @@ from aiogram.fsm.context import FSMContext
 from remnawave.models import CreateUserRequestDto
 from remnawave.enums import TrafficLimitStrategy
 from remnawave.exceptions import ApiError
-from aiogram.utils.markdown import hcode, hbold
 
 from states import CreateUserFlow
 from keyboards import (
