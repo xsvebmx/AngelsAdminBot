@@ -32,10 +32,12 @@ INTERNAL_SQUADS = {
     "promo1": ("ПРОМО-1", "6ee7a7cd-cfe0-49f1-9e6d-898ad2c61cb2"),
     "promo2": ("ПРОМО-2", "28c99966-6bd1-4eed-97c1-a230f31b015b"),
 }
+INTERNAL_SQUADS["default"] = ("СВОИ", "ec4dc856-dc75-474f-b2cb-e0e95fc76626")
 
 EXTERNAL_SQUADS = {
-    "both": ("BOTH", "77357f14-dd4e-4921-95e4-708fb56eaa02"),
+    "both": ("Both", "77357f14-dd4e-4921-95e4-708fb56eaa02"),
 }
+EXTERNAL_SQUADS["whitelist"] = ("Whitelist", "3ed64469-d522-4ae2-87d6-4e0a562f357c")
 
 # =========================
 # Helpers
