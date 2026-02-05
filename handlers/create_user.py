@@ -7,6 +7,8 @@ from aiogram.fsm.context import FSMContext
 from remnawave.models import CreateUserRequestDto
 from remnawave.enums import TrafficLimitStrategy
 from remnawave.exceptions import ApiError
+from aiogram.utils.markdown import hcode, hbold
+from loguru import logger
 
 from states import CreateUserFlow
 from keyboards import (
@@ -478,6 +480,7 @@ async def confirm_create(call: CallbackQuery, state: FSMContext):
             f"⏳ Expire: {user.expire_at}",
             reply_markup=main_menu_kb()
         )
+        logger.info(f"New user created!")
         await call.answer()
 
     except ApiError as e:
@@ -488,6 +491,7 @@ async def confirm_create(call: CallbackQuery, state: FSMContext):
             reply_markup=main_menu_kb()
         )
         await call.answer()
+        logger.error(f"API Error: Code - {e.error.code}; Message: {e.error.message}")
     except Exception as e:
         await state.clear()
         await safe_edit_text(
@@ -496,3 +500,4 @@ async def confirm_create(call: CallbackQuery, state: FSMContext):
             reply_markup=main_menu_kb()
         )
         await call.answer()
+        logger.error(f"Error: {str(e)}")

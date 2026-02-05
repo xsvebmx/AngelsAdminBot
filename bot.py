@@ -36,6 +36,7 @@ from handlers import (
 
 logger.add("logs/bot.log", level="INFO", rotation="10 MB", retention="1 month", compression="gz")
 
+@logger.catch
 async def main():
     bot = Bot(token=BOT_TOKEN)
     dp = Dispatcher(storage=MemoryStorage())
